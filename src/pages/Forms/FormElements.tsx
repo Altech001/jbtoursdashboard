@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import DefaultInputs from "../../components/form/form-elements/DefaultInputs";
 import InputGroup from "../../components/form/form-elements/InputGroup";
@@ -12,6 +13,14 @@ import InputStates from "../../components/form/form-elements/InputStates";
 import PageMeta from "../../components/common/PageMeta";
 
 export default function FormElements() {
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleDrop = (acceptedFiles: File[]) => {
+    if (acceptedFiles && acceptedFiles.length > 0) {
+      setFile(acceptedFiles[0]);
+    }
+  };
+
   return (
     <div>
       <PageMeta
@@ -32,7 +41,7 @@ export default function FormElements() {
           <CheckboxComponents />
           <RadioButtons />
           <ToggleSwitch />
-          <DropzoneComponent />
+          <DropzoneComponent onDrop={handleDrop} file={file} />
         </div>
       </div>
     </div>
