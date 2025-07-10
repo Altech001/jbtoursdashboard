@@ -1,8 +1,8 @@
+import { Aperture, Film, MapPinHouse, NotebookPen, Rss, UsersRound } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
-import { Rss } from 'lucide-react';
-import { MapPinHouse,NotebookPen,UsersRound,Aperture, Film } from 'lucide-react';
 // Assume these icons are imported from an icon library
+import { useSidebar } from "../context/SidebarContext";
 import {
   ChevronDownIcon,
   GridIcon,
@@ -10,7 +10,6 @@ import {
   ListIcon,
   PlugInIcon,
 } from "../icons";
-import { useSidebar } from "../context/SidebarContext";
 
 type NavItem = {
   name: string;
@@ -23,7 +22,7 @@ const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "Dashboard",
-    subItems: [{ name: "Ecommerce", path: "/", pro: false }],
+    path: "/",
   },
   {
     icon: <NotebookPen />,
@@ -34,14 +33,20 @@ const navItems: NavItem[] = [
     name: "Trips",
     icon: <ListIcon />,
     subItems: [
-      { name: "View Trips", path: "/form-elements", pro: false },
+      { name: "View Trips", path: "/trips", pro: false },
       { name: "Add Trip", path: "/create-trip", pro: false },
     ],
   },
   {
     icon: <UsersRound />,
-    name: "Clients",
+    name: "Receipts",
     path: "/clients",
+    // subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
+  },
+    {
+    icon: <Rss />,
+    name: "Posts",
+    path: "/posts",
     // subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
   },
   {
@@ -71,11 +76,6 @@ const othersItems: NavItem[] = [
       { name: "Add Video", path: "/avatars", pro: false },
       { name: "Edit / Delete", path: "/badge", pro: false },
     ],
-  },
-  {
-    icon: <Rss />,
-    name: "Posts",
-    path: "/post",
   },
   {
     icon: <PlugInIcon />,
@@ -300,14 +300,14 @@ const AppSidebar: React.FC = () => {
             <>
               <img
                 className="dark:hidden"
-                src="/images/logo/logo.svg"
+                src="/images/logo/logo.png"
                 alt="Logo"
-                width={150}
-                height={40}
+                width={80}
+                height={10}
               />
               <img
                 className="hidden dark:block"
-                src="/images/logo/logo-dark.svg"
+                src="/images/logo/logo.png"
                 alt="Logo"
                 width={150}
                 height={40}
@@ -315,7 +315,7 @@ const AppSidebar: React.FC = () => {
             </>
           ) : (
             <img
-              src="/images/logo/logo-icon.svg"
+              src="/images/logo/logo.png"
               alt="Logo"
               width={32}
               height={32}
