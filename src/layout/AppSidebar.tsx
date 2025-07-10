@@ -39,7 +39,7 @@ const navItems: NavItem[] = [
   },
   {
     icon: <UsersRound />,
-    name: "Receipts",
+    name: "Book Forms",
     path: "/clients",
     // subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
   },
@@ -53,8 +53,8 @@ const navItems: NavItem[] = [
     name: "Destinations",
     icon: <MapPinHouse />,
     subItems: [
-      { name: "View Destinations", path: "/blank", pro: false },
-      { name: "Add Destination", path: "/error-404", pro: false },
+      { name: "View Destinations", path: "/view-des", pro: false },
+      { name: "Add Destination", path: "/destination", pro: false },
     ],
   },
 ];

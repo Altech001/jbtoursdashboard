@@ -12,9 +12,6 @@ import Buttons from "./pages/UiElements/Buttons";
 import LineChart from "./pages/Charts/LineChart";
 import BarChart from "./pages/Charts/BarChart";
 import Calendar from "./pages/Calendar";
-import BasicTables from "./pages/Tables/BasicTables";
-import FormElements from "./pages/Forms/FormElements";
-import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
@@ -23,6 +20,9 @@ import ViewPhotos from "./pages/Dashboard/ViewPhotos";
 import AboutUs from "./pages/Dashboard/Aboutus";
 import AddTrip from "./pages/Trips/AddTrip";
 import ViewTrips from "./pages/Trips/ViewTrips";
+import BookForms from "./pages/Dashboard/BookForms";
+import CreateDestination from "./pages/Dashboard/CreateDestination";
+import ViewDestinations from "./pages/Dashboard/ViewDestinations";
 
 export default function App() {
   return (
@@ -37,15 +37,15 @@ export default function App() {
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
             <Route path="/calendar" element={<Calendar />} />
-            <Route path="/blank" element={<Blank />} />
+            <Route path="/view-des" element={<ViewDestinations />} />
             <Route path="/create-trip" element={<AddTrip />} />
             <Route path="/trips" element={<ViewTrips />} />
 
             {/* Forms */}
-            <Route path="/form-elements" element={<FormElements />} />
+            <Route path="/destination" element={<CreateDestination />} />
 
             {/* Tables */}
-            <Route path="/basic-tables" element={<BasicTables />} />
+            <Route path="/clients" element={<BookForms />} />
             <Route path="/add-photos" element={<Photos />} />
             <Route path="/photos" element={<ViewPhotos />} />
             <Route path="/about" element={<AboutUs />} />
