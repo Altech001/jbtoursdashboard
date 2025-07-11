@@ -5,6 +5,7 @@ import Label from '../../components/form/Label';
 import TextArea from '../../components/form/input/TextArea';
 import Button from '../../components/ui/button/Button';
 import Swal from 'sweetalert2';
+import ComponentCard from '../../components/common/ComponentCard';
 
 const CreateDestination = () => {
   const [destination, setDestination] = useState({
@@ -80,7 +81,8 @@ const CreateDestination = () => {
   return (
     <>
       <PageBreadCrumb pageTitle="Create Destination" />
-      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-lg dark:border-white/[0.05] dark:bg-white/[0.03]">
+      <ComponentCard title='Create and Edit Destination' desc='Create a new destination by filling out the form below.'>
+        <div className="rounded-xl  p-6  border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
@@ -130,6 +132,7 @@ const CreateDestination = () => {
           </div>
         </form>
       </div>
+      </ComponentCard>
     </>
   );
 };

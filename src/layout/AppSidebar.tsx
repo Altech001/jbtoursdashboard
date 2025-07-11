@@ -1,4 +1,4 @@
-import { Aperture, Film, MapPinHouse, NotebookPen, Rss, UsersRound } from 'lucide-react';
+import { Aperture, Film, MapPinHouse, NotebookPen, Rss } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 // Assume these icons are imported from an icon library
@@ -27,7 +27,7 @@ const navItems: NavItem[] = [
   {
     icon: <NotebookPen />,
     name: "Bookings",
-    path: "/calendar",
+    path: "/clients",
   },
   {
     name: "Trips",
@@ -35,13 +35,8 @@ const navItems: NavItem[] = [
     subItems: [
       { name: "View Trips", path: "/trips", pro: false },
       { name: "Add Trip", path: "/create-trip", pro: false },
+      { name: "Trip Bookings", path: "/trip-bookings", pro: false },
     ],
-  },
-  {
-    icon: <UsersRound />,
-    name: "Book Forms",
-    path: "/clients",
-    // subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
   },
     {
     icon: <Rss />,
@@ -71,11 +66,7 @@ const othersItems: NavItem[] = [
   {
     icon: <Film />,
     name: "Video Gallery",
-    subItems: [
-      { name: "View Videos", path: "/alerts", pro: false },
-      { name: "Add Video", path: "/avatars", pro: false },
-      { name: "Edit / Delete", path: "/badge", pro: false },
-    ],
+    path: "/videos",
   },
   {
     icon: <PlugInIcon />,

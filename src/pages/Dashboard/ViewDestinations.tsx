@@ -5,6 +5,7 @@ import InputField from '../../components/form/input/InputField';
 import Label from '../../components/form/Label';
 import TextArea from '../../components/form/input/TextArea';
 import Swal from 'sweetalert2';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 interface Destination {
   id: string;
@@ -108,7 +109,9 @@ const ViewDestinations = () => {
     <>
       <PageBreadCrumb pageTitle="View Destinations" />
       {isLoading ? (
-        <p>Loading...</p>
+        <div className="flex justify-center items-center h-64">
+          <ClipLoader color={"#4A90E2"} loading={isLoading} size={80} />
+        </div>
       ) : (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {destinations.map((destination) => (
@@ -136,7 +139,7 @@ const ViewDestinations = () => {
       )}
 
       {isEditPanelOpen && selectedDestination && (
-        <div className="fixed top-0 right-0 h-full w-2/5 bg-white p-8 shadow-lg dark:bg-boxdark overflow-y-auto">
+        <div className="fixed top-0 z-50 right-0 h-full w-2/5 bg-white p-8 shadow-lg dark:bg-boxdark overflow-y-auto">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Edit Destination</h2>
             <Button onClick={handlePanelClose} variant="outline" size="sm">Close</Button>
