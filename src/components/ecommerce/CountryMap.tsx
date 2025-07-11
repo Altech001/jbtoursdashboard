@@ -2,12 +2,19 @@
 import { VectorMap } from "@react-jvectormap/core";
 import { worldMill } from "@react-jvectormap/world";
 
+// Define the structure for a map marker
+interface Marker {
+  latLng: [number, number];
+  name: string;
+}
+
 // Define the component props
 interface CountryMapProps {
   mapColor?: string;
+  markers?: Marker[];
 }
 
-const CountryMap: React.FC<CountryMapProps> = ({ mapColor }) => {
+const CountryMap: React.FC<CountryMapProps> = ({ mapColor, markers = [] }) => {
   return (
     <VectorMap
       map={worldMill}
@@ -15,42 +22,13 @@ const CountryMap: React.FC<CountryMapProps> = ({ mapColor }) => {
       markerStyle={{
         initial: {
           fill: "#465FFF",
-          r: 4, // Custom radius for markers
-        } as any, // Type assertion to bypass strict CSS property checks
+          r: 5, // Custom radius for markers
+          stroke: "#fff",
+          "stroke-width": 2,
+        } as any, 
       }}
       markersSelectable={true}
-      markers={[
-        {
-          latLng: [37.2580397, -104.657039],
-          name: "United States",
-          style: {
-            fill: "#465FFF",
-            borderWidth: 1,
-            borderColor: "white",
-            stroke: "#383f47",
-          },
-        },
-        {
-          latLng: [20.7504374, 73.7276105],
-          name: "India",
-          style: { fill: "#465FFF", borderWidth: 1, borderColor: "white" },
-        },
-        {
-          latLng: [53.613, -11.6368],
-          name: "United Kingdom",
-          style: { fill: "#465FFF", borderWidth: 1, borderColor: "white" },
-        },
-        {
-          latLng: [-25.0304388, 115.2092761],
-          name: "Sweden",
-          style: {
-            fill: "#465FFF",
-            borderWidth: 1,
-            borderColor: "white",
-            strokeOpacity: 0,
-          },
-        },
-      ]}
+      markers={markers}
       zoomOnScroll={false}
       zoomMax={12}
       zoomMin={1}
