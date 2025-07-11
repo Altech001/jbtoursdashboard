@@ -1,5 +1,5 @@
 import { NotebookPen } from "lucide-react";
-import { ArrowUpIcon, BoxIconLine, GroupIcon } from "../../icons";
+import { ArrowUpIcon } from "../../icons";
 import Badge from "../ui/badge/Badge";
 
 interface EcommerceMetricsProps {
