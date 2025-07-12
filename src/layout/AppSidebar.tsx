@@ -1,4 +1,4 @@
-import { Aperture, Film, MapPinHouse, NotebookPen, Rss } from 'lucide-react';
+import { Aperture, Film, MapPinHouse, NotebookPen } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 // Assume these icons are imported from an icon library
