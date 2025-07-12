@@ -1,8 +1,8 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import AppLayout from "./layout/AppLayout";
-import SignIn from "./pages/AuthPages/SignIn";
-import SignUp from "./pages/AuthPages/SignUp";
+import SignInPage from "./pages/AuthPages/SignIn"; // Updated to the new Clerk sign-in page
+// import SignUp from "./pages/AuthPages/SignUp"; // Removed as per your request
 import Calendar from "./pages/Calendar";
 import BarChart from "./pages/Charts/BarChart";
 import LineChart from "./pages/Charts/LineChart";
@@ -24,6 +24,8 @@ import Buttons from "./pages/UiElements/Buttons";
 import Images from "./pages/UiElements/Images";
 import Videos from "./pages/UiElements/Videos";
 import UserProfiles from "./pages/UserProfiles";
+import { Toaster } from "./components/ui/sonner";
+import { ProtectedRoute } from "./layout/ProtectedRoute"; // Import the protected route
 
 export default function App() {
   return (
@@ -31,48 +33,54 @@ export default function App() {
       <Router>
         <ScrollToTop />
         <Routes>
-          {/* Dashboard Layout */}
-          <Route element={<AppLayout />}>
-            <Route index path="/" element={<Home />} />
+          {/* --- Protected Dashboard Routes --- */}
+          {/* Any route inside here will require authentication */}
+          <Route element={<ProtectedRoute />}>
+            <Route element={<AppLayout />}>
+              <Route index path="/" element={<Home />} />
 
-            {/* Others Page */}
-            <Route path="/profile" element={<UserProfiles />} />
-            <Route path="/calendar" element={<Calendar />} />
-            <Route path="/view-des" element={<ViewDestinations />} />
-            <Route path="/create-trip" element={<AddTrip />} />
-            <Route path="/trips" element={<ViewTrips />} />
+              {/* Others Page */}
+              <Route path="/profile" element={<UserProfiles />} />
+              <Route path="/calendar" element={<Calendar />} />
+              <Route path="/view-des" element={<ViewDestinations />} />
+              <Route path="/create-trip" element={<AddTrip />} />
+              <Route path="/trips" element={<ViewTrips />} />
 
-            {/* Forms */}
-            <Route path="/destination" element={<CreateDestination />} />
+              {/* Forms */}
+              <Route path="/destination" element={<CreateDestination />} />
 
-            {/* Tables */}
-            <Route path="/clients" element={<BookForms />} />
-            <Route path="/add-photos" element={<Photos />} />
-            <Route path="/photos" element={<ViewPhotos />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/videos" element={<VideoPage />} />
+              {/* Tables */}
+              <Route path="/clients" element={<BookForms />} />
+              <Route path="/add-photos" element={<Photos />} />
+              <Route path="/photos" element={<ViewPhotos />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/videos" element={<VideoPage />} />
 
-            {/* Ui Elements */}
-            <Route path="/alerts" element={<Alerts />} />
-            <Route path="/avatars" element={<Avatars />} />
-            <Route path="/trip-bookings" element={<TripBookings />} />
-            <Route path="/buttons" element={<Buttons />} />
-            <Route path="/images" element={<Images />} />
-            <Route path="/video" element={<Videos />} />
+              {/* Ui Elements */}
+              <Route path="/alerts" element={<Alerts />} />
+              <Route path="/avatars" element={<Avatars />} />
+              <Route path="/trip-bookings" element={<TripBookings />} />
+              <Route path="/buttons" element={<Buttons />} />
+              <Route path="/images" element={<Images />} />
+              <Route path="/video" element={<Videos />} />
 
-            {/* Charts */}
-            <Route path="/line-chart" element={<LineChart />} />
-            <Route path="/bar-chart" element={<BarChart />} />
+              {/* Charts */}
+              <Route path="/line-chart" element={<LineChart />} />
+              <Route path="/bar-chart" element={<BarChart />} />
+
+              {/* --- Fallback Route --- */}
+              <Route path="*" element={<NotFound />} />
+            </Route>
           </Route>
 
-          {/* Auth Layout */}
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
+          {/* --- Public Auth Layout --- */}
+          <Route path="/signin/*" element={<SignInPage />} />
+          {/* <Route path="/signup" element={<SignUp />} />  // This route is now removed */}
 
-          {/* Fallback Route */}
-          <Route path="*" element={<NotFound />} />
+          
         </Routes>
       </Router>
+      <Toaster richColors position="top-right" />
     </>
   );
 }

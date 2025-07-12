@@ -38,12 +38,12 @@ const navItems: NavItem[] = [
       { name: "Trip Bookings", path: "/trip-bookings", pro: false },
     ],
   },
-    {
-    icon: <Rss />,
-    name: "Posts",
-    path: "/posts",
-    // subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-  },
+  //   {
+  //   icon: <Rss />,
+  //   name: "Posts",
+  //   path: "/posts",
+  //   // subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
+  // },
   {
     name: "Destinations",
     icon: <MapPinHouse />,

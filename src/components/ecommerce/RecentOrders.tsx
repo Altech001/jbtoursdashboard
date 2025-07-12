@@ -21,8 +21,24 @@ interface RecentOrdersProps {
   bookings: Booking[];
 }
 
-export default function RecentOrders({ bookings }: RecentOrdersProps) {
+// Helper component for truncated destination display
+const TruncatedDestination = ({ destination }: { destination: string }) => {
+  const words = destination.split(' ');
+  const truncate = (wordCount: number) => {
+      if (words.length <= wordCount) return destination;
+      return words.slice(0, wordCount).join(' ') + '...';
+  };
 
+  return (
+      <>
+          <span className="md:hidden">{truncate(2)}</span>
+          <span className="hidden md:inline lg:hidden">{truncate(3)}</span>
+          <span className="hidden lg:inline">{destination}</span>
+      </>
+  );
+};
+
+export default function RecentOrders({ bookings }: RecentOrdersProps) {
   const getStatus = (checkinDate: string): "Delivered" | "Pending" => {
     const today = new Date();
     const dateOfCheckin = new Date(checkinDate);
@@ -126,7 +142,7 @@ export default function RecentOrders({ bookings }: RecentOrdersProps) {
                 <TableRow key={booking.id} className="">
                   <TableCell className="py-3">
                     <div className="flex items-center gap-3">
-                      <div className="h-[50px] w-[50px] overflow-hidden rounded-md bg-gray-100 flex items-center justify-center">
+                      <div className="h-[40px] w-[40px] overflow-hidden rounded-full bg-gray-100 flex items-center justify-center">
                         <span className="font-bold text-lg text-gray-600">{booking.name.charAt(0)}</span>
                       </div>
                       <div>
@@ -140,7 +156,7 @@ export default function RecentOrders({ bookings }: RecentOrdersProps) {
                     </div>
                   </TableCell>
                   <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                    {booking.destination}
+                    <TruncatedDestination destination={booking.destination} />
                   </TableCell>
                   <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
                     {new Date(booking.checkin_date).toLocaleDateString()}
