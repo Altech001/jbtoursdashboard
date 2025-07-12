@@ -51,10 +51,10 @@ export const useTrips = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-      background: '#fff', // Or use logic for dark mode
+      background: '#fff',
       customClass: {
         title: 'text-gray-800',
-        content: 'text-gray-600',
+        htmlContainer: 'text-gray-600', // Changed from 'content' to 'htmlContainer'
       }
     }).then((result) => {
       if (result.isConfirmed) {
