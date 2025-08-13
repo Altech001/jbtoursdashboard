@@ -554,14 +554,14 @@ const ActionsDropdown = ({
     onDelete: (id: string) => void; 
 }) => {
     return (
-        <div className="relative">
+        <div className="relative z-99">
             <button onClick={onToggle} className="dropdown-toggle p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
                 <MoreVertical className="size-5 text-gray-500" />
             </button>
             <Dropdown 
                 isOpen={isOpen} 
                 onClose={onToggle} 
-                className={`w-40 p-2 ${isLast ? 'bottom-full mb-2' : 'mt-1'}`}
+                className={`w-40 p-2 z-99 ${isLast ? 'top-full mb-2' : 'mt-1'}`}
             >
                 <DropdownItem onItemClick={() => { onView(booking); onToggle(); }} className="flex items-center gap-2">
                     <ScanEye className="size-4" /> View
@@ -652,7 +652,7 @@ const BookForms = () => {
         desc="View your custom the bookings from the form on the site"
         className="rounded-xl border border-gray-200 bg-white p-6 shadow-lg dark:border-white/[0.05] dark:bg-white/[0.03]"
       >
-        <div className="mb-4">
+        <div className="mb-4 -z-50">
           <InputField
             type="text"
             placeholder="Search by name..."
@@ -665,7 +665,7 @@ const BookForms = () => {
             <ClipLoader color={"#4A90E2"} loading={isLoading} size={80} />
           </div>
         ) : (
-          <div className="max-w-full overflow-x-auto min-h-screen">
+          <div className="max-w-full overflow-x-auto min-h-screen z-50">
             <Table>
               <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
                 <TableRow>
@@ -692,8 +692,9 @@ const BookForms = () => {
                     <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                       <Badge size="sm" color="success">{booking.guest_capcity} Guests</Badge>
                     </TableCell>
-                    <TableCell className="px-4 py-3">
-                      <ActionsDropdown 
+                    <TableCell className="px-4 py-3 z-50">
+                      <ActionsDropdown
+                      // className="z-50"
                         booking={booking} 
                         isOpen={openDropdownId === booking.id}
                         onToggle={() => toggleDropdown(booking.id)}
@@ -728,7 +729,7 @@ const BookForms = () => {
               <div className="flex justify-between"><span>Name:</span><span>{selectedBooking.name}</span></div>
               <div className="flex justify-between"><span>Email:</span><span>{selectedBooking.email}</span></div>
               <div className="flex justify-between"><span>Phone:</span><span>{selectedBooking.phone}</span></div>
-              <div className="flex justify-between"><span>Destination:</span><span>{selectedBooking.destination}</span></div>
+              <div className="flex justify-between"><span>Destination: </span><span>{selectedBooking.destination}</span></div>
               <div className="flex justify-between"><span>Check-in:</span><span>{new Date(selectedBooking.checkin_date).toLocaleDateString()}</span></div>
               <div className="flex justify-between"><span>Check-out:</span><span>{new Date(selectedBooking.checkout_date).toLocaleDateString()}</span></div>
               <div className="flex justify-between"><span>Guests:</span><span>{selectedBooking.guest_capcity}</span></div>
@@ -745,9 +746,9 @@ const BookForms = () => {
               <p>Date of issue: {new Date(selectedBooking.created_at).toLocaleString()}</p>
             </div>
           </div>
-          <div className="mt-6 text-right">
-            <Button onClick={() => window.print()}>Print Receipt</Button>
-          </div>
+          {/* <div className="mt-6 text-right">
+            <Button onClick={() => window.print(}>Print Receipt</Button>
+          </div> */}
         </div>
       )}
 

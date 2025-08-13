@@ -4,6 +4,8 @@ import { Heart, MapPin } from "lucide-react";
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import PageMeta from "../../components/common/PageMeta";
 import PhotoDetailPanel from "../../components/photos/PhotoDetailPanel";
+import { deletePhoto } from "../../lib/api";
+
 
 interface GalleryPhoto {
   id: string;
@@ -51,6 +53,7 @@ const ViewPhotos: React.FC = () => {
     setSelectedPhoto(null);
   };
 
+
   const handleLikePhoto = async (photoId: string) => {
     try {
       const response = await fetch(`https://jbheartfelt-api.onrender.com/photos/photos/${photoId}/like`, {
@@ -70,6 +73,20 @@ const ViewPhotos: React.FC = () => {
       }
     } catch (error) {
       console.error("An error occurred while liking the photo:", error);
+    }
+  };
+
+  // ...existing code...
+
+  const handleDeletePhoto = async (photoId: string) => {
+    if (!window.confirm("Are you sure you want to delete this photo? This action cannot be undone.")) return;
+    try {
+      await deletePhoto(photoId);
+      setPhotos((prev: GalleryPhoto[]) => prev.filter((p: GalleryPhoto) => p.id !== photoId));
+      setIsPanelOpen(false);
+      setSelectedPhoto(null);
+    } catch {
+      alert("Failed to delete photo. Please try again.");
     }
   };
 
@@ -133,6 +150,7 @@ const ViewPhotos: React.FC = () => {
           photo={selectedPhoto}
           onClose={handleClosePanel}
           onLike={handleLikePhoto}
+          onDelete={handleDeletePhoto}
         />
       )}
     </>

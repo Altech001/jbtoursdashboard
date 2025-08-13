@@ -29,3 +29,6 @@ export const addTrip = (tripData: any) => api.post('/books/trips/', tripData, {
     'Content-Type': 'application/json',
   }
 });
+
+// Photos
+export const deletePhoto = (photoId: string) => api.delete(`/photos/photos/${photoId}`);
