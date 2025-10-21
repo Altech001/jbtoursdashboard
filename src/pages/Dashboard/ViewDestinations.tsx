@@ -26,7 +26,7 @@ const ViewDestinations = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://jbheartfelt-api.onrender.com/places/')
+    fetch('https://jbheartfelt-api-rsvx.onrender.com/places/')
       .then((response) => response.json())
       .then((data) => {
         setDestinations(data);
@@ -54,7 +54,7 @@ const ViewDestinations = () => {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://jbheartfelt-api.onrender.com/places/${destinationId}`, {
+        fetch(`https://jbheartfelt-api-rsvx.onrender.com/places/${destinationId}`, {
           method: 'DELETE',
         })
         .then(() => {
@@ -85,7 +85,7 @@ const ViewDestinations = () => {
         key_highlights: highlightsArray,
       };
 
-      fetch(`https://jbheartfelt-api.onrender.com/places/${selectedDestination.id}`, {
+      fetch(`https://jbheartfelt-api-rsvx.onrender.com/places/${selectedDestination.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

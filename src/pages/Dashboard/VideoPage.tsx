@@ -32,7 +32,7 @@ const VideoPage = () => {
   });
 
   useEffect(() => {
-    fetch('https://jbheartfelt-api.onrender.com/videos/list')
+    fetch('https://jbheartfelt-api-rsvx.onrender.com/videos/list')
       .then((response) => response.json())
       .then((data) => setVideos(data));
   }, []);
@@ -58,7 +58,7 @@ const VideoPage = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         setIsLoading(true);
-        fetch(`https://jbheartfelt-api.onrender.com/videos/${video.id}`, {
+        fetch(`https://jbheartfelt-api-rsvx.onrender.com/videos/${video.id}`, {
           method: 'DELETE',
         })
           .then((response) => {
@@ -85,8 +85,8 @@ const VideoPage = () => {
       setIsLoading(true);
       const isNewVideo = !selectedVideo.id;
       const url = isNewVideo
-        ? 'https://jbheartfelt-api.onrender.com/videos/upload'
-        : `https://jbheartfelt-api.onrender.com/videos/${selectedVideo.id}`;
+        ? 'https://jbheartfelt-api-rsvx.onrender.com/videos/upload'
+        : `https://jbheartfelt-api-rsvx.onrender.com/videos/${selectedVideo.id}`;
       const method = isNewVideo ? 'POST' : 'PUT';
 
       const videoData = isNewVideo

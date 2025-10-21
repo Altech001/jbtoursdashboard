@@ -50,7 +50,7 @@ const CreateDestination = () => {
       d_images: d_images,
     };
 
-    fetch('https://jbheartfelt-api.onrender.com/places/', {
+    fetch('https://jbheartfelt-api-rsvx.onrender.com/places/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

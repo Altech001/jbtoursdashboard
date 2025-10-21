@@ -27,7 +27,7 @@ const ViewPhotos: React.FC = () => {
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const response = await fetch("https://jbheartfelt-api.onrender.com/photos/gallery");
+        const response = await fetch("https://jbheartfelt-api-rsvx.onrender.com/photos/gallery");
         if (!response.ok) {
           throw new Error("Failed to fetch photos");
         }
@@ -56,7 +56,7 @@ const ViewPhotos: React.FC = () => {
 
   const handleLikePhoto = async (photoId: string) => {
     try {
-      const response = await fetch(`https://jbheartfelt-api.onrender.com/photos/photos/${photoId}/like`, {
+      const response = await fetch(`https://jbheartfelt-api-rsvx.onrender.com/photos/photos/${photoId}/like`, {
         method: "POST",
       });
 

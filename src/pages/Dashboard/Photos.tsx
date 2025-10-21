@@ -58,7 +58,7 @@ const Photos: React.FC = () => {
         image_location: formData.image_location,
     }).toString();
 
-    const url = `https://jbheartfelt-api.onrender.com/photos/upload?${queryParams}`;
+    const url = `https://jbheartfelt-api-rsvx.onrender.com/photos/upload?${queryParams}`;
 
     try {
       const response = await fetch(url, {

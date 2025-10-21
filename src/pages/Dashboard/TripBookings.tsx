@@ -36,7 +36,7 @@ const TripBookings = () => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   useEffect(() => {
-    fetch('https://jbheartfelt-api.onrender.com/books/trips/')
+    fetch('https://jbheartfelt-api-rsvx.onrender.com/books/trips/')
       .then((response) => response.json())
       .then((data) => {
         setTrips(data);
@@ -48,7 +48,7 @@ const TripBookings = () => {
     if (selectedTrip === 'all') {
       Promise.all(
         trips.map(trip =>
-          fetch(`https://jbheartfelt-api.onrender.com/books/trips/${trip.id}/users/full`).then(res => res.json())
+          fetch(`https://jbheartfelt-api-rsvx.onrender.com/books/trips/${trip.id}/users/full`).then(res => res.json())
         )
       ).then(results => {
         const allBookedUsers = results.flat();
@@ -56,7 +56,7 @@ const TripBookings = () => {
         setIsLoading(false);
       }).catch(() => setIsLoading(false));
     } else {
-      fetch(`https://jbheartfelt-api.onrender.com/books/trips/${selectedTrip}/users/full`)
+      fetch(`https://jbheartfelt-api-rsvx.onrender.com/books/trips/${selectedTrip}/users/full`)
         .then((response) => response.json())
         .then((data) => {
           setBookedUsers(data);
