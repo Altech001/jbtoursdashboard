@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://jbheartfelt-api.onrender.com',
+  baseURL: 'https://jbheartfelt-api-rsvx.onrender.com',
   headers: {
     'accept': 'application/json'
   }
